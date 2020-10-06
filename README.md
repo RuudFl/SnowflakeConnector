@@ -29,11 +29,14 @@ In case of long running queries, you have the possibilty to use the snowflake sp
 # Dependencies
 
 [Database Connector 2.3.0](https://github.com/mendix/database-connector)
+
 [Encryption Module](https://appstore.home.mendix.com/link/app/1011/)
 
 # Useful links
 
 [Snowflake Query Syntax](https://docs.snowflake.com/en/sql-reference/constructs.html)
+
 [Using the JDBC Driver](https://docs.snowflake.com/en/user-guide/jdbc-using.html)
+
 [JDBC Driver API Support](https://docs.snowflake.com/en/user-guide/jdbc-api.html)
 

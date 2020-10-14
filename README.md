@@ -4,11 +4,11 @@ Manage snowflake connections in your Mendix project and execute (async) queries 
 # Setup
 This module extends current Database Connector module and creates a configuration layer for connecting to snowflake and manage multiple connection / database profiles. 
 
-1) Import the module in your Mx project
+1) Fix possible layout errors
 
-2) Add the administrator role from this module to one of the administrator roles in your app. 
+2) Add the Administrator role from this module to one of the administrator roles in your app. 
 
-3) Connect 'SnowflakeConfiguration' page to your app configuration.
+3) Connect 'Configuration' page to your app configuration.
 
 4) Create at least 1 configuration and 1 database profile for each created configuration. You can use multiple database profiles for a configuration to access multiple databases/schema's with different warehouses for the same snowflake enterprise account and role. Test your created database profiles by clicking 'Test Database connection' on the bottom grid of the configuration page.
 
@@ -21,6 +21,10 @@ Use ConnectionBuilder_Create to collect all needed connectionparameters needed f
 Passwords are stored and encrypted using the Encryption module.
 
 To easily test the connection side of the snowflake connection, use SQL: select current_version() as "Version". This example can be triggered from the configuration page with the 'test connectivity' button.
+
+Warehouses
+
+A virtual warehouse, often referred to simply as a “warehouse”, is a cluster of compute resources in Snowflake. A warehouse provides the required resources, such as CPU, memory, and temporary storage, to perform the following operations in a Snowflake session. The module has the ability to retrieve warehouse metadata and (temporarily) change the warehouse size.
 
 Async Queries
 

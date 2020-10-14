@@ -17,7 +17,6 @@ import com.mendix.core.Core;
 import com.mendix.logging.ILogNode;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
-import databaseconnector.impl.JdbcConnector;
 import net.snowflake.client.jdbc.SnowflakeResultSet;
 import net.snowflake.client.jdbc.SnowflakeStatement;
 import snowflakeconnector.SnowflakeConnector;

@@ -11,17 +11,10 @@ package snowflakeconnector.actions;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import com.mendix.core.Core;
 import com.mendix.logging.ILogNode;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
-import databaseconnector.impl.ResultSetReader;
 import net.snowflake.client.core.QueryStatus;
 import net.snowflake.client.jdbc.SnowflakeConnection;
 import net.snowflake.client.jdbc.SnowflakeResultSet;
@@ -29,8 +22,6 @@ import snowflakeconnector.SnowflakeConnector;
 import snowflakeconnector.proxies.AsyncQueryStatus;
 import snowflakeconnector.proxies.Enum_QueryStatus;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
-import com.mendix.systemwideinterfaces.core.IMendixObjectMember;
-import com.mendix.systemwideinterfaces.core.meta.IMetaObject;
 
 public class AsyncQueryGetStatus extends CustomJavaAction<IMendixObject>
 {

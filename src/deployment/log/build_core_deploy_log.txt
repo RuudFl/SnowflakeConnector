@@ -1,0 +1,10 @@
+Buildfile: C:\_WORKSPACE_RUUD\Mendix\ModuleTemplateApp72313-main\deployment\build_core.xml
+
+deploy:
+     [copy] Copying 46 files to C:\_WORKSPACE_RUUD\Mendix\ModuleTemplateApp72313-main\deployment
+     [copy] Copying 39 files to C:\_WORKSPACE_RUUD\Mendix\ModuleTemplateApp72313-main\deployment\model\lib\userlib
+
+BUILD SUCCESSFUL
+Total time: 1 second
+
+

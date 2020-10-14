@@ -1,0 +1,12 @@
+Buildfile: C:\_WORKSPACE_RUUD\Mendix\ModuleTemplateApp72313-main\deployment\build_core.xml
+
+compile:
+    [javac] Compiling 2 source files to C:\_WORKSPACE_RUUD\Mendix\ModuleTemplateApp72313-main\deployment\run\bin
+
+package:
+      [jar] Building jar: C:\_WORKSPACE_RUUD\Mendix\ModuleTemplateApp72313-main\deployment\model\bundles\project.jar
+
+BUILD SUCCESSFUL
+Total time: 1 second
+
+

@@ -1,0 +1,9 @@
+[rtlauncher:container$] INFO Evictions for component 'project-userlib':
+Evicted C:\_WORKSPACE_RUUD\Mendix\ModuleTemplateApp72313-main\deployment\model\lib\userlib\snowflake-jdbc-3.10.0.jar by C:\_WORKSPACE_RUUD\Mendix\ModuleTemplateApp72313-main\deployment\model\lib\userlib\snowflake-jdbc-3.12.12.jar.
+[rtlauncher:container$] INFO Container start took 3255. Ready to accept admin requests.
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+
+
+

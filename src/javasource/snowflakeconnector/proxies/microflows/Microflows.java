@@ -30,7 +30,7 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-	public static java.util.List<snowflakeconnector.proxies.TestResult> asyncQuery_GetResult(IContext context, java.lang.String _databaseProfileId, java.lang.String _queryId)
+	public static java.util.List<snowflakeconnector.proxies.Result> asyncQuery_GetResult(IContext context, java.lang.String _databaseProfileId, java.lang.String _queryId)
 	{
 		try
 		{
@@ -38,12 +38,12 @@ public class Microflows
 			params.put("DatabaseProfileId", _databaseProfileId);
 			params.put("QueryId", _queryId);
 			java.util.List<IMendixObject> objs = Core.execute(context, "SnowflakeConnector.AsyncQuery_GetResult", params);
-			java.util.List<snowflakeconnector.proxies.TestResult> result = null;
+			java.util.List<snowflakeconnector.proxies.Result> result = null;
 			if (objs != null)
 			{
-				result = new java.util.ArrayList<snowflakeconnector.proxies.TestResult>();
+				result = new java.util.ArrayList<snowflakeconnector.proxies.Result>();
 				for (IMendixObject obj : objs)
-					result.add(snowflakeconnector.proxies.TestResult.initialize(context, obj));
+					result.add(snowflakeconnector.proxies.Result.initialize(context, obj));
 			}
 			return result;
 		}
@@ -171,6 +171,72 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
+	public static void aT_Warehouse_ApplyNewSize(IContext context, snowflakeconnector.proxies.WarehouseEdit _warehouseEdit, snowflakeconnector.proxies.DatabaseProfile _databaseProfile, snowflakeconnector.proxies.Warehouse _warehouse)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			params.put("WarehouseEdit", _warehouseEdit == null ? null : _warehouseEdit.getMendixObject());
+			params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
+			params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
+			Core.execute(context, "SnowflakeConnector.AT_Warehouse_ApplyNewSize", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static void aT_Warehouse_ChangeSize_Show(IContext context, snowflakeconnector.proxies.DatabaseProfile _databaseProfile)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
+			Core.execute(context, "SnowflakeConnector.AT_Warehouse_ChangeSize_Show", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static void aT_Warehouse_Overview_Show(IContext context)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			Core.execute(context, "SnowflakeConnector.AT_Warehouse_Overview_Show", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static void aT_Warehouse_Refresh(IContext context, snowflakeconnector.proxies.DatabaseProfile _databaseProfile)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
+			Core.execute(context, "SnowflakeConnector.AT_Warehouse_Refresh", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static void aT_Warehouse_Save(IContext context, snowflakeconnector.proxies.Warehouse _warehouse)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
+			Core.execute(context, "SnowflakeConnector.AT_Warehouse_Save", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
 	public static snowflakeconnector.proxies.ConnectionBuilder connectionBuilder_Create(IContext context, java.lang.String _databaseProfileId)
 	{
 		try
@@ -179,6 +245,22 @@ public class Microflows
 			params.put("DatabaseProfileId", _databaseProfileId);
 			IMendixObject result = (IMendixObject)Core.execute(context, "SnowflakeConnector.ConnectionBuilder_Create", params);
 			return result == null ? null : snowflakeconnector.proxies.ConnectionBuilder.initialize(context, result);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static snowflakeconnector.proxies.Enum_WarehouseSize convertSizeStringToEnum(IContext context, java.lang.String _size)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			params.put("Size", _size);
+			java.lang.String result = (java.lang.String)Core.execute(context, "SnowflakeConnector.ConvertSizeStringToEnum", params);
+			if (result == null)
+				return null;
+			return snowflakeconnector.proxies.Enum_WarehouseSize.valueOf(result);
 		}
 		catch (CoreException e)
 		{
@@ -199,6 +281,42 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
+	public static snowflakeconnector.proxies.WarehouseEdit dS_WarehouseEdit_Create(IContext context, snowflakeconnector.proxies.DatabaseProfile _databaseProfile)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
+			IMendixObject result = (IMendixObject)Core.execute(context, "SnowflakeConnector.DS_WarehouseEdit_Create", params);
+			return result == null ? null : snowflakeconnector.proxies.WarehouseEdit.initialize(context, result);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static java.util.List<snowflakeconnector.proxies.WarehouseInfo> getWarehouseInfo(IContext context, java.lang.String _databaseProfileId, snowflakeconnector.proxies.Warehouse _warehouse)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			params.put("DatabaseProfileId", _databaseProfileId);
+			params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
+			java.util.List<IMendixObject> objs = Core.execute(context, "SnowflakeConnector.GetWarehouseInfo", params);
+			java.util.List<snowflakeconnector.proxies.WarehouseInfo> result = null;
+			if (objs != null)
+			{
+				result = new java.util.ArrayList<snowflakeconnector.proxies.WarehouseInfo>();
+				for (IMendixObject obj : objs)
+					result.add(snowflakeconnector.proxies.WarehouseInfo.initialize(context, obj));
+			}
+			return result;
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
 	public static java.lang.String lognode_SnowflakeConnector(IContext context)
 	{
 		try
@@ -211,7 +329,7 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-	public static java.util.List<snowflakeconnector.proxies.TestResult> query_Execute(IContext context, java.lang.String _databaseProfileId, java.lang.String _sqlQuery)
+	public static java.util.List<snowflakeconnector.proxies.Result> query_Execute(IContext context, java.lang.String _databaseProfileId, java.lang.String _sqlQuery)
 	{
 		try
 		{
@@ -219,12 +337,12 @@ public class Microflows
 			params.put("DatabaseProfileId", _databaseProfileId);
 			params.put("SqlQuery", _sqlQuery);
 			java.util.List<IMendixObject> objs = Core.execute(context, "SnowflakeConnector.Query_Execute", params);
-			java.util.List<snowflakeconnector.proxies.TestResult> result = null;
+			java.util.List<snowflakeconnector.proxies.Result> result = null;
 			if (objs != null)
 			{
-				result = new java.util.ArrayList<snowflakeconnector.proxies.TestResult>();
+				result = new java.util.ArrayList<snowflakeconnector.proxies.Result>();
 				for (IMendixObject obj : objs)
-					result.add(snowflakeconnector.proxies.TestResult.initialize(context, obj));
+					result.add(snowflakeconnector.proxies.Result.initialize(context, obj));
 			}
 			return result;
 		}
@@ -262,19 +380,19 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-	public static java.util.List<snowflakeconnector.proxies.TestResult> sF_SnowflakeConfiguration_ExecuteConnectivityTest(IContext context, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration)
+	public static java.util.List<snowflakeconnector.proxies.Result> sF_SnowflakeConfiguration_ExecuteConnectivityTest(IContext context, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration)
 	{
 		try
 		{
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
 			params.put("SnowflakeConfiguration", _snowflakeConfiguration == null ? null : _snowflakeConfiguration.getMendixObject());
 			java.util.List<IMendixObject> objs = Core.execute(context, "SnowflakeConnector.SF_SnowflakeConfiguration_ExecuteConnectivityTest", params);
-			java.util.List<snowflakeconnector.proxies.TestResult> result = null;
+			java.util.List<snowflakeconnector.proxies.Result> result = null;
 			if (objs != null)
 			{
-				result = new java.util.ArrayList<snowflakeconnector.proxies.TestResult>();
+				result = new java.util.ArrayList<snowflakeconnector.proxies.Result>();
 				for (IMendixObject obj : objs)
-					result.add(snowflakeconnector.proxies.TestResult.initialize(context, obj));
+					result.add(snowflakeconnector.proxies.Result.initialize(context, obj));
 			}
 			return result;
 		}
@@ -283,13 +401,14 @@ public class Microflows
 			throw new MendixRuntimeException(e);
 		}
 	}
-	public static java.lang.String sF_SnowflakeConfiguration_GetJdbcUrl(IContext context, snowflakeconnector.proxies.DatabaseProfile _databaseProfile, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration)
+	public static java.lang.String sF_SnowflakeConfiguration_GetJdbcUrl(IContext context, snowflakeconnector.proxies.DatabaseProfile _databaseProfile, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration, snowflakeconnector.proxies.Warehouse _warehouse)
 	{
 		try
 		{
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
 			params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
 			params.put("SnowflakeConfiguration", _snowflakeConfiguration == null ? null : _snowflakeConfiguration.getMendixObject());
+			params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
 			return (java.lang.String)Core.execute(context, "SnowflakeConnector.SF_SnowflakeConfiguration_GetJdbcUrl", params);
 		}
 		catch (CoreException e)
@@ -304,6 +423,48 @@ public class Microflows
 			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
 			params.put("SnowflakeConfiguration", _snowflakeConfiguration == null ? null : _snowflakeConfiguration.getMendixObject());
 			return (java.lang.String)Core.execute(context, "SnowflakeConnector.SF_SnowflakeConfiguration_GetPassword", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static boolean sF_Warehouse_AlterSize(IContext context, snowflakeconnector.proxies.Enum_WarehouseSize _newSize, snowflakeconnector.proxies.Warehouse _warehouse)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			params.put("NewSize", _newSize == null ? null : _newSize.name());
+			params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
+			return (java.lang.Boolean)Core.execute(context, "SnowflakeConnector.SF_Warehouse_AlterSize", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static boolean sF_Warehouse_RefreshInfo(IContext context, snowflakeconnector.proxies.Warehouse _warehouse, snowflakeconnector.proxies.DatabaseProfile _databaseProfile)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
+			params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
+			return (java.lang.Boolean)Core.execute(context, "SnowflakeConnector.SF_Warehouse_RefreshInfo", params);
+		}
+		catch (CoreException e)
+		{
+			throw new MendixRuntimeException(e);
+		}
+	}
+	public static java.lang.Long statement_Execute(IContext context, java.lang.String _databaseProfileId, java.lang.String _sqlQuery)
+	{
+		try
+		{
+			Map<java.lang.String, Object> params = new HashMap<java.lang.String, Object>();
+			params.put("DatabaseProfileId", _databaseProfileId);
+			params.put("SqlQuery", _sqlQuery);
+			return (java.lang.Long)Core.execute(context, "SnowflakeConnector.Statement_Execute", params);
 		}
 		catch (CoreException e)
 		{

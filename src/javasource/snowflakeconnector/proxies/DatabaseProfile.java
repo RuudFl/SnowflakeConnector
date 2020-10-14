@@ -23,8 +23,8 @@ public class DatabaseProfile
 		Identifier("Identifier"),
 		Database("Database"),
 		Schema("Schema"),
-		Warehouse("Warehouse"),
-		DatabaseProfile_SnowflakeConfiguration("SnowflakeConnector.DatabaseProfile_SnowflakeConfiguration");
+		DatabaseProfile_SnowflakeConfiguration("SnowflakeConnector.DatabaseProfile_SnowflakeConfiguration"),
+		DatabaseProfile_Warehouse("SnowflakeConnector.DatabaseProfile_Warehouse");
 
 		private java.lang.String metaName;
 
@@ -228,42 +228,6 @@ public class DatabaseProfile
 	}
 
 	/**
-	 * @return value of Warehouse
-	 */
-	public final java.lang.String getWarehouse()
-	{
-		return getWarehouse(getContext());
-	}
-
-	/**
-	 * @param context
-	 * @return value of Warehouse
-	 */
-	public final java.lang.String getWarehouse(com.mendix.systemwideinterfaces.core.IContext context)
-	{
-		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Warehouse.toString());
-	}
-
-	/**
-	 * Set value of Warehouse
-	 * @param warehouse
-	 */
-	public final void setWarehouse(java.lang.String warehouse)
-	{
-		setWarehouse(getContext(), warehouse);
-	}
-
-	/**
-	 * Set value of Warehouse
-	 * @param context
-	 * @param warehouse
-	 */
-	public final void setWarehouse(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String warehouse)
-	{
-		getMendixObject().setValue(context, MemberNames.Warehouse.toString(), warehouse);
-	}
-
-	/**
 	 * @return value of DatabaseProfile_SnowflakeConfiguration
 	 */
 	public final snowflakeconnector.proxies.SnowflakeConfiguration getDatabaseProfile_SnowflakeConfiguration() throws com.mendix.core.CoreException
@@ -304,6 +268,49 @@ public class DatabaseProfile
 			getMendixObject().setValue(context, MemberNames.DatabaseProfile_SnowflakeConfiguration.toString(), null);
 		else
 			getMendixObject().setValue(context, MemberNames.DatabaseProfile_SnowflakeConfiguration.toString(), databaseprofile_snowflakeconfiguration.getMendixObject().getId());
+	}
+
+	/**
+	 * @return value of DatabaseProfile_Warehouse
+	 */
+	public final snowflakeconnector.proxies.Warehouse getDatabaseProfile_Warehouse() throws com.mendix.core.CoreException
+	{
+		return getDatabaseProfile_Warehouse(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of DatabaseProfile_Warehouse
+	 */
+	public final snowflakeconnector.proxies.Warehouse getDatabaseProfile_Warehouse(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
+	{
+		snowflakeconnector.proxies.Warehouse result = null;
+		com.mendix.systemwideinterfaces.core.IMendixIdentifier identifier = getMendixObject().getValue(context, MemberNames.DatabaseProfile_Warehouse.toString());
+		if (identifier != null)
+			result = snowflakeconnector.proxies.Warehouse.load(context, identifier);
+		return result;
+	}
+
+	/**
+	 * Set value of DatabaseProfile_Warehouse
+	 * @param databaseprofile_warehouse
+	 */
+	public final void setDatabaseProfile_Warehouse(snowflakeconnector.proxies.Warehouse databaseprofile_warehouse)
+	{
+		setDatabaseProfile_Warehouse(getContext(), databaseprofile_warehouse);
+	}
+
+	/**
+	 * Set value of DatabaseProfile_Warehouse
+	 * @param context
+	 * @param databaseprofile_warehouse
+	 */
+	public final void setDatabaseProfile_Warehouse(com.mendix.systemwideinterfaces.core.IContext context, snowflakeconnector.proxies.Warehouse databaseprofile_warehouse)
+	{
+		if (databaseprofile_warehouse == null)
+			getMendixObject().setValue(context, MemberNames.DatabaseProfile_Warehouse.toString(), null);
+		else
+			getMendixObject().setValue(context, MemberNames.DatabaseProfile_Warehouse.toString(), databaseprofile_warehouse.getMendixObject().getId());
 	}
 
 	/**

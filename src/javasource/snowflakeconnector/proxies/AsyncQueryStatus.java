@@ -24,7 +24,7 @@ public class AsyncQueryStatus
 		Errorcode("Errorcode"),
 		Errormessage("Errormessage");
 
-		private java.lang.String metaName;
+		private final java.lang.String metaName;
 
 		MemberNames(java.lang.String s)
 		{
@@ -40,15 +40,17 @@ public class AsyncQueryStatus
 
 	public AsyncQueryStatus(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		this(context, com.mendix.core.Core.instantiate(context, "SnowflakeConnector.AsyncQueryStatus"));
+		this(context, com.mendix.core.Core.instantiate(context, entityName));
 	}
 
 	protected AsyncQueryStatus(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject asyncQueryStatusMendixObject)
 	{
-		if (asyncQueryStatusMendixObject == null)
+		if (asyncQueryStatusMendixObject == null) {
 			throw new java.lang.IllegalArgumentException("The given object cannot be null.");
-		if (!com.mendix.core.Core.isSubClassOf("SnowflakeConnector.AsyncQueryStatus", asyncQueryStatusMendixObject.getType()))
-			throw new java.lang.IllegalArgumentException("The given object is not a SnowflakeConnector.AsyncQueryStatus");
+		}
+		if (!com.mendix.core.Core.isSubClassOf(entityName, asyncQueryStatusMendixObject.getType())) {
+			throw new java.lang.IllegalArgumentException(String.format("The given object is not a %s", entityName));
+		}	
 
 		this.asyncQueryStatusMendixObject = asyncQueryStatusMendixObject;
 		this.context = context;
@@ -66,6 +68,9 @@ public class AsyncQueryStatus
 	/**
 	 * Initialize a proxy using context (recommended). This context will be used for security checking when the get- and set-methods without context parameters are called.
 	 * The get- and set-methods with context parameter should be used when for instance sudo access is necessary (IContext.createSudoClone() can be used to obtain sudo access).
+	 * @param context The context to be used
+	 * @param mendixObject The Mendix object for the new instance
+	 * @return a new instance of this proxy class
 	 */
 	public static snowflakeconnector.proxies.AsyncQueryStatus initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject mendixObject)
 	{
@@ -80,6 +85,7 @@ public class AsyncQueryStatus
 
 	/**
 	 * Commit the changes made on this proxy object.
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final void commit() throws com.mendix.core.CoreException
 	{
@@ -88,6 +94,7 @@ public class AsyncQueryStatus
 
 	/**
 	 * Commit the changes made on this proxy object using the specified context.
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final void commit(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
 	{
@@ -125,9 +132,9 @@ public class AsyncQueryStatus
 	public final snowflakeconnector.proxies.Enum_QueryStatus getStatus(com.mendix.systemwideinterfaces.core.IContext context)
 	{
 		Object obj = getMendixObject().getValue(context, MemberNames.Status.toString());
-		if (obj == null)
+		if (obj == null) {
 			return null;
-
+		}
 		return snowflakeconnector.proxies.Enum_QueryStatus.valueOf((java.lang.String) obj);
 	}
 
@@ -147,10 +154,11 @@ public class AsyncQueryStatus
 	 */
 	public final void setStatus(com.mendix.systemwideinterfaces.core.IContext context, snowflakeconnector.proxies.Enum_QueryStatus status)
 	{
-		if (status != null)
+		if (status != null) {
 			getMendixObject().setValue(context, MemberNames.Status.toString(), status.toString());
-		else
+		} else {
 			getMendixObject().setValue(context, MemberNames.Status.toString(), null);
+		}
 	}
 
 	/**
@@ -244,9 +252,9 @@ public class AsyncQueryStatus
 	@java.lang.Override
 	public boolean equals(Object obj)
 	{
-		if (obj == this)
+		if (obj == this) {
 			return true;
-
+		}
 		if (obj != null && getClass().equals(obj.getClass()))
 		{
 			final snowflakeconnector.proxies.AsyncQueryStatus that = (snowflakeconnector.proxies.AsyncQueryStatus) obj;
@@ -266,7 +274,7 @@ public class AsyncQueryStatus
 	 */
 	public static java.lang.String getType()
 	{
-		return "SnowflakeConnector.AsyncQueryStatus";
+		return entityName;
 	}
 
 	/**

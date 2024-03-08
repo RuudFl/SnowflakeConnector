@@ -22,7 +22,7 @@ public class WarehouseEdit
 	{
 		NewSize("NewSize");
 
-		private java.lang.String metaName;
+		private final java.lang.String metaName;
 
 		MemberNames(java.lang.String s)
 		{
@@ -38,15 +38,17 @@ public class WarehouseEdit
 
 	public WarehouseEdit(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		this(context, com.mendix.core.Core.instantiate(context, "SnowflakeConnector.WarehouseEdit"));
+		this(context, com.mendix.core.Core.instantiate(context, entityName));
 	}
 
 	protected WarehouseEdit(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject warehouseEditMendixObject)
 	{
-		if (warehouseEditMendixObject == null)
+		if (warehouseEditMendixObject == null) {
 			throw new java.lang.IllegalArgumentException("The given object cannot be null.");
-		if (!com.mendix.core.Core.isSubClassOf("SnowflakeConnector.WarehouseEdit", warehouseEditMendixObject.getType()))
-			throw new java.lang.IllegalArgumentException("The given object is not a SnowflakeConnector.WarehouseEdit");
+		}
+		if (!com.mendix.core.Core.isSubClassOf(entityName, warehouseEditMendixObject.getType())) {
+			throw new java.lang.IllegalArgumentException(String.format("The given object is not a %s", entityName));
+		}	
 
 		this.warehouseEditMendixObject = warehouseEditMendixObject;
 		this.context = context;
@@ -64,6 +66,9 @@ public class WarehouseEdit
 	/**
 	 * Initialize a proxy using context (recommended). This context will be used for security checking when the get- and set-methods without context parameters are called.
 	 * The get- and set-methods with context parameter should be used when for instance sudo access is necessary (IContext.createSudoClone() can be used to obtain sudo access).
+	 * @param context The context to be used
+	 * @param mendixObject The Mendix object for the new instance
+	 * @return a new instance of this proxy class
 	 */
 	public static snowflakeconnector.proxies.WarehouseEdit initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject mendixObject)
 	{
@@ -78,6 +83,7 @@ public class WarehouseEdit
 
 	/**
 	 * Commit the changes made on this proxy object.
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final void commit() throws com.mendix.core.CoreException
 	{
@@ -86,6 +92,7 @@ public class WarehouseEdit
 
 	/**
 	 * Commit the changes made on this proxy object using the specified context.
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final void commit(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
 	{
@@ -123,9 +130,9 @@ public class WarehouseEdit
 	public final snowflakeconnector.proxies.Enum_WarehouseSize getNewSize(com.mendix.systemwideinterfaces.core.IContext context)
 	{
 		Object obj = getMendixObject().getValue(context, MemberNames.NewSize.toString());
-		if (obj == null)
+		if (obj == null) {
 			return null;
-
+		}
 		return snowflakeconnector.proxies.Enum_WarehouseSize.valueOf((java.lang.String) obj);
 	}
 
@@ -145,10 +152,11 @@ public class WarehouseEdit
 	 */
 	public final void setNewSize(com.mendix.systemwideinterfaces.core.IContext context, snowflakeconnector.proxies.Enum_WarehouseSize newsize)
 	{
-		if (newsize != null)
+		if (newsize != null) {
 			getMendixObject().setValue(context, MemberNames.NewSize.toString(), newsize.toString());
-		else
+		} else {
 			getMendixObject().setValue(context, MemberNames.NewSize.toString(), null);
+		}
 	}
 
 	/**
@@ -170,9 +178,9 @@ public class WarehouseEdit
 	@java.lang.Override
 	public boolean equals(Object obj)
 	{
-		if (obj == this)
+		if (obj == this) {
 			return true;
-
+		}
 		if (obj != null && getClass().equals(obj.getClass()))
 		{
 			final snowflakeconnector.proxies.WarehouseEdit that = (snowflakeconnector.proxies.WarehouseEdit) obj;
@@ -192,7 +200,7 @@ public class WarehouseEdit
 	 */
 	public static java.lang.String getType()
 	{
-		return "SnowflakeConnector.WarehouseEdit";
+		return entityName;
 	}
 
 	/**

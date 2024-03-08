@@ -7,13 +7,19 @@ package snowflakeconnector.proxies.microflows;
 import java.util.HashMap;
 import java.util.Map;
 import com.mendix.core.Core;
-import com.mendix.core.CoreException;
-import com.mendix.systemwideinterfaces.MendixRuntimeException;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 
 public class Microflows
 {
+	/**
+	 * @deprecated
+	 * The default constructor of the Microflows class should not be used.
+	 * Use the static microflow invocation methods instead.
+	 */
+	@java.lang.Deprecated(since = "9.12", forRemoval = true)
+	public Microflows() {}
+
 	// These are the microflows for the SnowflakeConnector module
 	public static snowflakeconnector.proxies.AsyncQueryResult asyncQuery_Execute(IContext context, java.lang.String _databaseProfileId, java.lang.String _sqlQuery)
 	{
@@ -29,14 +35,13 @@ public class Microflows
 		params.put("DatabaseProfileId", _databaseProfileId);
 		params.put("QueryId", _queryId);
 		java.util.List<IMendixObject> objs = Core.microflowCall("SnowflakeConnector.AsyncQuery_GetResult").withParams(params).execute(context);
-		java.util.List<snowflakeconnector.proxies.Result> result = null;
-		if (objs != null)
-		{
-			result = new java.util.ArrayList<>();
-			for (IMendixObject obj : objs)
-				result.add(snowflakeconnector.proxies.Result.initialize(context, obj));
+		if (objs == null) {
+			return null;
+		} else {
+			return objs.stream()
+				.map(obj -> snowflakeconnector.proxies.Result.initialize(context, obj))
+				.collect(java.util.stream.Collectors.toList());
 		}
-		return result;
 	}
 	public static snowflakeconnector.proxies.AsyncQueryStatus asyncQuery_GetStatus(IContext context, java.lang.String _databaseProfileId, java.lang.String _queryId)
 	{
@@ -127,6 +132,15 @@ public class Microflows
 		IMendixObject result = (IMendixObject)Core.microflowCall("SnowflakeConnector.ConnectionBuilder_Create").withParams(params).execute(context);
 		return result == null ? null : snowflakeconnector.proxies.ConnectionBuilder.initialize(context, result);
 	}
+	public static snowflakeconnector.proxies.ConnectionBuilder connectionBuilder_SetValues(IContext context, snowflakeconnector.proxies.DatabaseProfile _databaseProfile, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration, snowflakeconnector.proxies.ConnectionBuilder _connectionBuilder)
+	{
+		Map<java.lang.String, Object> params = new HashMap<>();
+		params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
+		params.put("SnowflakeConfiguration", _snowflakeConfiguration == null ? null : _snowflakeConfiguration.getMendixObject());
+		params.put("ConnectionBuilder", _connectionBuilder == null ? null : _connectionBuilder.getMendixObject());
+		IMendixObject result = (IMendixObject)Core.microflowCall("SnowflakeConnector.ConnectionBuilder_SetValues").withParams(params).execute(context);
+		return result == null ? null : snowflakeconnector.proxies.ConnectionBuilder.initialize(context, result);
+	}
 	public static java.util.List<snowflakeconnector.proxies.Result> connectionTest_ParameterizedQuery_Execute(IContext context, java.lang.String _databaseProfileId, java.lang.String _attribute, java.lang.String _value)
 	{
 		Map<java.lang.String, Object> params = new HashMap<>();
@@ -134,29 +148,13 @@ public class Microflows
 		params.put("Attribute", _attribute);
 		params.put("Value", _value);
 		java.util.List<IMendixObject> objs = Core.microflowCall("SnowflakeConnector.ConnectionTest_ParameterizedQuery_Execute").withParams(params).execute(context);
-		java.util.List<snowflakeconnector.proxies.Result> result = null;
-		if (objs != null)
-		{
-			result = new java.util.ArrayList<>();
-			for (IMendixObject obj : objs)
-				result.add(snowflakeconnector.proxies.Result.initialize(context, obj));
+		if (objs == null) {
+			return null;
+		} else {
+			return objs.stream()
+				.map(obj -> snowflakeconnector.proxies.Result.initialize(context, obj))
+				.collect(java.util.stream.Collectors.toList());
 		}
-		return result;
-	}
-	public static java.util.List<snowflakeconnector.proxies.Result> connectionTest_Query_Execute(IContext context, java.lang.String _databaseProfileId, java.lang.String _sqlQuery)
-	{
-		Map<java.lang.String, Object> params = new HashMap<>();
-		params.put("DatabaseProfileId", _databaseProfileId);
-		params.put("SqlQuery", _sqlQuery);
-		java.util.List<IMendixObject> objs = Core.microflowCall("SnowflakeConnector.ConnectionTest_Query_Execute").withParams(params).execute(context);
-		java.util.List<snowflakeconnector.proxies.Result> result = null;
-		if (objs != null)
-		{
-			result = new java.util.ArrayList<>();
-			for (IMendixObject obj : objs)
-				result.add(snowflakeconnector.proxies.Result.initialize(context, obj));
-		}
-		return result;
 	}
 	public static snowflakeconnector.proxies.Enum_WarehouseSize convertSizeStringToEnum(IContext context, java.lang.String _size)
 	{
@@ -165,96 +163,43 @@ public class Microflows
 		java.lang.String result = (java.lang.String) Core.microflowCall("SnowflakeConnector.ConvertSizeStringToEnum").withParams(params).execute(context);
 		return result == null ? null : snowflakeconnector.proxies.Enum_WarehouseSize.valueOf(result);
 	}
-	public static snowflakeconnector.proxies.DatabaseProfile databaseProfile_Retrieve(IContext context, java.lang.String _databaseProfileId)
-	{
-		Map<java.lang.String, Object> params = new HashMap<>();
-		params.put("DatabaseProfileId", _databaseProfileId);
-		IMendixObject result = (IMendixObject)Core.microflowCall("SnowflakeConnector.DatabaseProfile_Retrieve").withParams(params).execute(context);
-		return result == null ? null : snowflakeconnector.proxies.DatabaseProfile.initialize(context, result);
-	}
-	public static snowflakeconnector.proxies.WarehouseEdit dS_WarehouseEdit_Create(IContext context, snowflakeconnector.proxies.DatabaseProfile _databaseProfile)
-	{
-		Map<java.lang.String, Object> params = new HashMap<>();
-		params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
-		IMendixObject result = (IMendixObject)Core.microflowCall("SnowflakeConnector.DS_WarehouseEdit_Create").withParams(params).execute(context);
-		return result == null ? null : snowflakeconnector.proxies.WarehouseEdit.initialize(context, result);
-	}
-	public static java.util.List<snowflakeconnector.proxies.WarehouseInfo> getWarehouseInfo(IContext context, java.lang.String _databaseProfileId, snowflakeconnector.proxies.Warehouse _warehouse)
-	{
-		Map<java.lang.String, Object> params = new HashMap<>();
-		params.put("DatabaseProfileId", _databaseProfileId);
-		params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
-		java.util.List<IMendixObject> objs = Core.microflowCall("SnowflakeConnector.GetWarehouseInfo").withParams(params).execute(context);
-		java.util.List<snowflakeconnector.proxies.WarehouseInfo> result = null;
-		if (objs != null)
-		{
-			result = new java.util.ArrayList<>();
-			for (IMendixObject obj : objs)
-				result.add(snowflakeconnector.proxies.WarehouseInfo.initialize(context, obj));
-		}
-		return result;
-	}
 	public static java.lang.String lognode_SnowflakeConnector(IContext context)
 	{
 		Map<java.lang.String, Object> params = new HashMap<>();
 		return (java.lang.String) Core.microflowCall("SnowflakeConnector.Lognode_SnowflakeConnector").withParams(params).execute(context);
 	}
-	public static snowflakeconnector.proxies.ConnectionBuilder sF_ConnectionBuilder_SetValues(IContext context, snowflakeconnector.proxies.DatabaseProfile _databaseProfile, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration, snowflakeconnector.proxies.ConnectionBuilder _connectionBuilder)
+	public static void snowflakeConfiguration_EncryptPassword(IContext context, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration)
 	{
 		Map<java.lang.String, Object> params = new HashMap<>();
-		params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
 		params.put("SnowflakeConfiguration", _snowflakeConfiguration == null ? null : _snowflakeConfiguration.getMendixObject());
-		params.put("ConnectionBuilder", _connectionBuilder == null ? null : _connectionBuilder.getMendixObject());
-		IMendixObject result = (IMendixObject)Core.microflowCall("SnowflakeConnector.SF_ConnectionBuilder_SetValues").withParams(params).execute(context);
-		return result == null ? null : snowflakeconnector.proxies.ConnectionBuilder.initialize(context, result);
+		Core.microflowCall("SnowflakeConnector.SnowflakeConfiguration_EncryptPassword").withParams(params).execute(context);
 	}
-	public static void sF_SnowflakeConfiguration_EncryptPassword(IContext context, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration)
+	public static java.util.List<snowflakeconnector.proxies.Result> snowflakeConfiguration_ExecuteConnectivityTest(IContext context, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration)
 	{
 		Map<java.lang.String, Object> params = new HashMap<>();
 		params.put("SnowflakeConfiguration", _snowflakeConfiguration == null ? null : _snowflakeConfiguration.getMendixObject());
-		Core.microflowCall("SnowflakeConnector.SF_SnowflakeConfiguration_EncryptPassword").withParams(params).execute(context);
-	}
-	public static java.util.List<snowflakeconnector.proxies.Result> sF_SnowflakeConfiguration_ExecuteConnectivityTest(IContext context, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration)
-	{
-		Map<java.lang.String, Object> params = new HashMap<>();
-		params.put("SnowflakeConfiguration", _snowflakeConfiguration == null ? null : _snowflakeConfiguration.getMendixObject());
-		java.util.List<IMendixObject> objs = Core.microflowCall("SnowflakeConnector.SF_SnowflakeConfiguration_ExecuteConnectivityTest").withParams(params).execute(context);
-		java.util.List<snowflakeconnector.proxies.Result> result = null;
-		if (objs != null)
-		{
-			result = new java.util.ArrayList<>();
-			for (IMendixObject obj : objs)
-				result.add(snowflakeconnector.proxies.Result.initialize(context, obj));
+		java.util.List<IMendixObject> objs = Core.microflowCall("SnowflakeConnector.SnowflakeConfiguration_ExecuteConnectivityTest").withParams(params).execute(context);
+		if (objs == null) {
+			return null;
+		} else {
+			return objs.stream()
+				.map(obj -> snowflakeconnector.proxies.Result.initialize(context, obj))
+				.collect(java.util.stream.Collectors.toList());
 		}
-		return result;
 	}
-	public static java.lang.String sF_SnowflakeConfiguration_GetJdbcUrl(IContext context, snowflakeconnector.proxies.DatabaseProfile _databaseProfile, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration, snowflakeconnector.proxies.Warehouse _warehouse)
+	public static java.lang.String snowflakeConfiguration_GetJdbcUrl(IContext context, snowflakeconnector.proxies.DatabaseProfile _databaseProfile, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration, snowflakeconnector.proxies.Warehouse _warehouse)
 	{
 		Map<java.lang.String, Object> params = new HashMap<>();
 		params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
 		params.put("SnowflakeConfiguration", _snowflakeConfiguration == null ? null : _snowflakeConfiguration.getMendixObject());
 		params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
-		return (java.lang.String) Core.microflowCall("SnowflakeConnector.SF_SnowflakeConfiguration_GetJdbcUrl").withParams(params).execute(context);
+		return (java.lang.String) Core.microflowCall("SnowflakeConnector.SnowflakeConfiguration_GetJdbcUrl").withParams(params).execute(context);
 	}
-	public static java.lang.String sF_SnowflakeConfiguration_GetPassword(IContext context, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration)
+	public static java.lang.String snowflakeConfiguration_GetPassword(IContext context, snowflakeconnector.proxies.SnowflakeConfiguration _snowflakeConfiguration)
 	{
 		Map<java.lang.String, Object> params = new HashMap<>();
 		params.put("SnowflakeConfiguration", _snowflakeConfiguration == null ? null : _snowflakeConfiguration.getMendixObject());
-		return (java.lang.String) Core.microflowCall("SnowflakeConnector.SF_SnowflakeConfiguration_GetPassword").withParams(params).execute(context);
-	}
-	public static boolean sF_Warehouse_AlterSize(IContext context, snowflakeconnector.proxies.Enum_WarehouseSize _newSize, snowflakeconnector.proxies.Warehouse _warehouse)
-	{
-		Map<java.lang.String, Object> params = new HashMap<>();
-		params.put("NewSize", _newSize == null ? null : _newSize.name());
-		params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
-		return (java.lang.Boolean) Core.microflowCall("SnowflakeConnector.SF_Warehouse_AlterSize").withParams(params).execute(context);
-	}
-	public static boolean sF_Warehouse_RefreshInfo(IContext context, snowflakeconnector.proxies.Warehouse _warehouse, snowflakeconnector.proxies.DatabaseProfile _databaseProfile)
-	{
-		Map<java.lang.String, Object> params = new HashMap<>();
-		params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
-		params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
-		return (java.lang.Boolean) Core.microflowCall("SnowflakeConnector.SF_Warehouse_RefreshInfo").withParams(params).execute(context);
+		return (java.lang.String) Core.microflowCall("SnowflakeConnector.SnowflakeConfiguration_GetPassword").withParams(params).execute(context);
 	}
 	public static java.lang.Long statement_Execute(IContext context, java.lang.String _databaseProfileId, java.lang.String _sqlStatement)
 	{
@@ -263,11 +208,44 @@ public class Microflows
 		params.put("SqlStatement", _sqlStatement);
 		return (java.lang.Long) Core.microflowCall("SnowflakeConnector.Statement_Execute").withParams(params).execute(context);
 	}
-	public static java.lang.Long statement_Execute_Parameterized(IContext context, java.lang.String _databaseProfileId, java.lang.String _sqlStatement)
+	public static boolean vAL_DatabaseProfile(IContext context, snowflakeconnector.proxies.DatabaseProfile _databaseProfile)
+	{
+		Map<java.lang.String, Object> params = new HashMap<>();
+		params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
+		return (java.lang.Boolean) Core.microflowCall("SnowflakeConnector.VAL_DatabaseProfile").withParams(params).execute(context);
+	}
+	public static boolean warehouse_AlterSize(IContext context, snowflakeconnector.proxies.Enum_WarehouseSize _newSize, snowflakeconnector.proxies.Warehouse _warehouse)
+	{
+		Map<java.lang.String, Object> params = new HashMap<>();
+		params.put("NewSize", _newSize == null ? null : _newSize.name());
+		params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
+		return (java.lang.Boolean) Core.microflowCall("SnowflakeConnector.Warehouse_AlterSize").withParams(params).execute(context);
+	}
+	public static java.util.List<snowflakeconnector.proxies.WarehouseInfo> warehouse_GetWarehouseInfo(IContext context, java.lang.String _databaseProfileId, snowflakeconnector.proxies.Warehouse _warehouse)
 	{
 		Map<java.lang.String, Object> params = new HashMap<>();
 		params.put("DatabaseProfileId", _databaseProfileId);
-		params.put("SqlStatement", _sqlStatement);
-		return (java.lang.Long) Core.microflowCall("SnowflakeConnector.Statement_Execute_Parameterized").withParams(params).execute(context);
+		params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
+		java.util.List<IMendixObject> objs = Core.microflowCall("SnowflakeConnector.Warehouse_GetWarehouseInfo").withParams(params).execute(context);
+		if (objs == null) {
+			return null;
+		} else {
+			return objs.stream()
+				.map(obj -> snowflakeconnector.proxies.WarehouseInfo.initialize(context, obj))
+				.collect(java.util.stream.Collectors.toList());
+		}
+	}
+	public static boolean warehouse_RefreshInfo(IContext context, snowflakeconnector.proxies.Warehouse _warehouse, snowflakeconnector.proxies.DatabaseProfile _databaseProfile)
+	{
+		Map<java.lang.String, Object> params = new HashMap<>();
+		params.put("Warehouse", _warehouse == null ? null : _warehouse.getMendixObject());
+		params.put("DatabaseProfile", _databaseProfile == null ? null : _databaseProfile.getMendixObject());
+		return (java.lang.Boolean) Core.microflowCall("SnowflakeConnector.Warehouse_RefreshInfo").withParams(params).execute(context);
+	}
+	public static snowflakeconnector.proxies.WarehouseEdit warehouseEdit_Create(IContext context)
+	{
+		Map<java.lang.String, Object> params = new HashMap<>();
+		IMendixObject result = (IMendixObject)Core.microflowCall("SnowflakeConnector.WarehouseEdit_Create").withParams(params).execute(context);
+		return result == null ? null : snowflakeconnector.proxies.WarehouseEdit.initialize(context, result);
 	}
 }

@@ -26,7 +26,7 @@ public class AsyncQueryExample
 		Message("Message"),
 		AsyncQueryExample_DatabaseProfile("SnowflakeConnector.AsyncQueryExample_DatabaseProfile");
 
-		private java.lang.String metaName;
+		private final java.lang.String metaName;
 
 		MemberNames(java.lang.String s)
 		{
@@ -42,15 +42,17 @@ public class AsyncQueryExample
 
 	public AsyncQueryExample(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		this(context, com.mendix.core.Core.instantiate(context, "SnowflakeConnector.AsyncQueryExample"));
+		this(context, com.mendix.core.Core.instantiate(context, entityName));
 	}
 
 	protected AsyncQueryExample(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject asyncQueryExampleMendixObject)
 	{
-		if (asyncQueryExampleMendixObject == null)
+		if (asyncQueryExampleMendixObject == null) {
 			throw new java.lang.IllegalArgumentException("The given object cannot be null.");
-		if (!com.mendix.core.Core.isSubClassOf("SnowflakeConnector.AsyncQueryExample", asyncQueryExampleMendixObject.getType()))
-			throw new java.lang.IllegalArgumentException("The given object is not a SnowflakeConnector.AsyncQueryExample");
+		}
+		if (!com.mendix.core.Core.isSubClassOf(entityName, asyncQueryExampleMendixObject.getType())) {
+			throw new java.lang.IllegalArgumentException(String.format("The given object is not a %s", entityName));
+		}	
 
 		this.asyncQueryExampleMendixObject = asyncQueryExampleMendixObject;
 		this.context = context;
@@ -68,6 +70,9 @@ public class AsyncQueryExample
 	/**
 	 * Initialize a proxy using context (recommended). This context will be used for security checking when the get- and set-methods without context parameters are called.
 	 * The get- and set-methods with context parameter should be used when for instance sudo access is necessary (IContext.createSudoClone() can be used to obtain sudo access).
+	 * @param context The context to be used
+	 * @param mendixObject The Mendix object for the new instance
+	 * @return a new instance of this proxy class
 	 */
 	public static snowflakeconnector.proxies.AsyncQueryExample initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject mendixObject)
 	{
@@ -82,14 +87,16 @@ public class AsyncQueryExample
 
 	public static java.util.List<snowflakeconnector.proxies.AsyncQueryExample> load(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String xpathConstraint) throws com.mendix.core.CoreException
 	{
-		java.util.List<snowflakeconnector.proxies.AsyncQueryExample> result = new java.util.ArrayList<snowflakeconnector.proxies.AsyncQueryExample>();
-		for (com.mendix.systemwideinterfaces.core.IMendixObject obj : com.mendix.core.Core.retrieveXPathQuery(context, "//SnowflakeConnector.AsyncQueryExample" + xpathConstraint))
-			result.add(snowflakeconnector.proxies.AsyncQueryExample.initialize(context, obj));
-		return result;
+		return com.mendix.core.Core.createXPathQuery(String.format("//%1$s%2$s", entityName, xpathConstraint))
+			.execute(context)
+			.stream()
+			.map(obj -> snowflakeconnector.proxies.AsyncQueryExample.initialize(context, obj))
+			.collect(java.util.stream.Collectors.toList());
 	}
 
 	/**
 	 * Commit the changes made on this proxy object.
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final void commit() throws com.mendix.core.CoreException
 	{
@@ -98,6 +105,7 @@ public class AsyncQueryExample
 
 	/**
 	 * Commit the changes made on this proxy object using the specified context.
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final void commit(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
 	{
@@ -207,9 +215,9 @@ public class AsyncQueryExample
 	public final snowflakeconnector.proxies.Enum_QueryStatus getStatus(com.mendix.systemwideinterfaces.core.IContext context)
 	{
 		Object obj = getMendixObject().getValue(context, MemberNames.Status.toString());
-		if (obj == null)
+		if (obj == null) {
 			return null;
-
+		}
 		return snowflakeconnector.proxies.Enum_QueryStatus.valueOf((java.lang.String) obj);
 	}
 
@@ -229,10 +237,11 @@ public class AsyncQueryExample
 	 */
 	public final void setStatus(com.mendix.systemwideinterfaces.core.IContext context, snowflakeconnector.proxies.Enum_QueryStatus status)
 	{
-		if (status != null)
+		if (status != null) {
 			getMendixObject().setValue(context, MemberNames.Status.toString(), status.toString());
-		else
+		} else {
 			getMendixObject().setValue(context, MemberNames.Status.toString(), null);
+		}
 	}
 
 	/**
@@ -272,6 +281,7 @@ public class AsyncQueryExample
 	}
 
 	/**
+	 * @throws com.mendix.core.CoreException
 	 * @return value of AsyncQueryExample_DatabaseProfile
 	 */
 	public final snowflakeconnector.proxies.DatabaseProfile getAsyncQueryExample_DatabaseProfile() throws com.mendix.core.CoreException
@@ -282,13 +292,15 @@ public class AsyncQueryExample
 	/**
 	 * @param context
 	 * @return value of AsyncQueryExample_DatabaseProfile
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final snowflakeconnector.proxies.DatabaseProfile getAsyncQueryExample_DatabaseProfile(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
 	{
 		snowflakeconnector.proxies.DatabaseProfile result = null;
 		com.mendix.systemwideinterfaces.core.IMendixIdentifier identifier = getMendixObject().getValue(context, MemberNames.AsyncQueryExample_DatabaseProfile.toString());
-		if (identifier != null)
+		if (identifier != null) {
 			result = snowflakeconnector.proxies.DatabaseProfile.load(context, identifier);
+		}
 		return result;
 	}
 
@@ -308,10 +320,11 @@ public class AsyncQueryExample
 	 */
 	public final void setAsyncQueryExample_DatabaseProfile(com.mendix.systemwideinterfaces.core.IContext context, snowflakeconnector.proxies.DatabaseProfile asyncqueryexample_databaseprofile)
 	{
-		if (asyncqueryexample_databaseprofile == null)
+		if (asyncqueryexample_databaseprofile == null) {
 			getMendixObject().setValue(context, MemberNames.AsyncQueryExample_DatabaseProfile.toString(), null);
-		else
+		} else {
 			getMendixObject().setValue(context, MemberNames.AsyncQueryExample_DatabaseProfile.toString(), asyncqueryexample_databaseprofile.getMendixObject().getId());
+		}
 	}
 
 	/**
@@ -333,9 +346,9 @@ public class AsyncQueryExample
 	@java.lang.Override
 	public boolean equals(Object obj)
 	{
-		if (obj == this)
+		if (obj == this) {
 			return true;
-
+		}
 		if (obj != null && getClass().equals(obj.getClass()))
 		{
 			final snowflakeconnector.proxies.AsyncQueryExample that = (snowflakeconnector.proxies.AsyncQueryExample) obj;
@@ -355,7 +368,7 @@ public class AsyncQueryExample
 	 */
 	public static java.lang.String getType()
 	{
-		return "SnowflakeConnector.AsyncQueryExample";
+		return entityName;
 	}
 
 	/**

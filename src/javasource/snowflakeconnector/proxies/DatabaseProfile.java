@@ -26,7 +26,7 @@ public class DatabaseProfile
 		DatabaseProfile_SnowflakeConfiguration("SnowflakeConnector.DatabaseProfile_SnowflakeConfiguration"),
 		DatabaseProfile_Warehouse("SnowflakeConnector.DatabaseProfile_Warehouse");
 
-		private java.lang.String metaName;
+		private final java.lang.String metaName;
 
 		MemberNames(java.lang.String s)
 		{
@@ -42,15 +42,17 @@ public class DatabaseProfile
 
 	public DatabaseProfile(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		this(context, com.mendix.core.Core.instantiate(context, "SnowflakeConnector.DatabaseProfile"));
+		this(context, com.mendix.core.Core.instantiate(context, entityName));
 	}
 
 	protected DatabaseProfile(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject databaseProfileMendixObject)
 	{
-		if (databaseProfileMendixObject == null)
+		if (databaseProfileMendixObject == null) {
 			throw new java.lang.IllegalArgumentException("The given object cannot be null.");
-		if (!com.mendix.core.Core.isSubClassOf("SnowflakeConnector.DatabaseProfile", databaseProfileMendixObject.getType()))
-			throw new java.lang.IllegalArgumentException("The given object is not a SnowflakeConnector.DatabaseProfile");
+		}
+		if (!com.mendix.core.Core.isSubClassOf(entityName, databaseProfileMendixObject.getType())) {
+			throw new java.lang.IllegalArgumentException(String.format("The given object is not a %s", entityName));
+		}	
 
 		this.databaseProfileMendixObject = databaseProfileMendixObject;
 		this.context = context;
@@ -68,6 +70,9 @@ public class DatabaseProfile
 	/**
 	 * Initialize a proxy using context (recommended). This context will be used for security checking when the get- and set-methods without context parameters are called.
 	 * The get- and set-methods with context parameter should be used when for instance sudo access is necessary (IContext.createSudoClone() can be used to obtain sudo access).
+	 * @param context The context to be used
+	 * @param mendixObject The Mendix object for the new instance
+	 * @return a new instance of this proxy class
 	 */
 	public static snowflakeconnector.proxies.DatabaseProfile initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject mendixObject)
 	{
@@ -82,14 +87,16 @@ public class DatabaseProfile
 
 	public static java.util.List<snowflakeconnector.proxies.DatabaseProfile> load(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String xpathConstraint) throws com.mendix.core.CoreException
 	{
-		java.util.List<snowflakeconnector.proxies.DatabaseProfile> result = new java.util.ArrayList<snowflakeconnector.proxies.DatabaseProfile>();
-		for (com.mendix.systemwideinterfaces.core.IMendixObject obj : com.mendix.core.Core.retrieveXPathQuery(context, "//SnowflakeConnector.DatabaseProfile" + xpathConstraint))
-			result.add(snowflakeconnector.proxies.DatabaseProfile.initialize(context, obj));
-		return result;
+		return com.mendix.core.Core.createXPathQuery(String.format("//%1$s%2$s", entityName, xpathConstraint))
+			.execute(context)
+			.stream()
+			.map(obj -> snowflakeconnector.proxies.DatabaseProfile.initialize(context, obj))
+			.collect(java.util.stream.Collectors.toList());
 	}
 
 	/**
 	 * Commit the changes made on this proxy object.
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final void commit() throws com.mendix.core.CoreException
 	{
@@ -98,6 +105,7 @@ public class DatabaseProfile
 
 	/**
 	 * Commit the changes made on this proxy object using the specified context.
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final void commit(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
 	{
@@ -228,6 +236,7 @@ public class DatabaseProfile
 	}
 
 	/**
+	 * @throws com.mendix.core.CoreException
 	 * @return value of DatabaseProfile_SnowflakeConfiguration
 	 */
 	public final snowflakeconnector.proxies.SnowflakeConfiguration getDatabaseProfile_SnowflakeConfiguration() throws com.mendix.core.CoreException
@@ -238,13 +247,15 @@ public class DatabaseProfile
 	/**
 	 * @param context
 	 * @return value of DatabaseProfile_SnowflakeConfiguration
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final snowflakeconnector.proxies.SnowflakeConfiguration getDatabaseProfile_SnowflakeConfiguration(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
 	{
 		snowflakeconnector.proxies.SnowflakeConfiguration result = null;
 		com.mendix.systemwideinterfaces.core.IMendixIdentifier identifier = getMendixObject().getValue(context, MemberNames.DatabaseProfile_SnowflakeConfiguration.toString());
-		if (identifier != null)
+		if (identifier != null) {
 			result = snowflakeconnector.proxies.SnowflakeConfiguration.load(context, identifier);
+		}
 		return result;
 	}
 
@@ -264,13 +275,15 @@ public class DatabaseProfile
 	 */
 	public final void setDatabaseProfile_SnowflakeConfiguration(com.mendix.systemwideinterfaces.core.IContext context, snowflakeconnector.proxies.SnowflakeConfiguration databaseprofile_snowflakeconfiguration)
 	{
-		if (databaseprofile_snowflakeconfiguration == null)
+		if (databaseprofile_snowflakeconfiguration == null) {
 			getMendixObject().setValue(context, MemberNames.DatabaseProfile_SnowflakeConfiguration.toString(), null);
-		else
+		} else {
 			getMendixObject().setValue(context, MemberNames.DatabaseProfile_SnowflakeConfiguration.toString(), databaseprofile_snowflakeconfiguration.getMendixObject().getId());
+		}
 	}
 
 	/**
+	 * @throws com.mendix.core.CoreException
 	 * @return value of DatabaseProfile_Warehouse
 	 */
 	public final snowflakeconnector.proxies.Warehouse getDatabaseProfile_Warehouse() throws com.mendix.core.CoreException
@@ -281,13 +294,15 @@ public class DatabaseProfile
 	/**
 	 * @param context
 	 * @return value of DatabaseProfile_Warehouse
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final snowflakeconnector.proxies.Warehouse getDatabaseProfile_Warehouse(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
 	{
 		snowflakeconnector.proxies.Warehouse result = null;
 		com.mendix.systemwideinterfaces.core.IMendixIdentifier identifier = getMendixObject().getValue(context, MemberNames.DatabaseProfile_Warehouse.toString());
-		if (identifier != null)
+		if (identifier != null) {
 			result = snowflakeconnector.proxies.Warehouse.load(context, identifier);
+		}
 		return result;
 	}
 
@@ -307,10 +322,11 @@ public class DatabaseProfile
 	 */
 	public final void setDatabaseProfile_Warehouse(com.mendix.systemwideinterfaces.core.IContext context, snowflakeconnector.proxies.Warehouse databaseprofile_warehouse)
 	{
-		if (databaseprofile_warehouse == null)
+		if (databaseprofile_warehouse == null) {
 			getMendixObject().setValue(context, MemberNames.DatabaseProfile_Warehouse.toString(), null);
-		else
+		} else {
 			getMendixObject().setValue(context, MemberNames.DatabaseProfile_Warehouse.toString(), databaseprofile_warehouse.getMendixObject().getId());
+		}
 	}
 
 	/**
@@ -332,9 +348,9 @@ public class DatabaseProfile
 	@java.lang.Override
 	public boolean equals(Object obj)
 	{
-		if (obj == this)
+		if (obj == this) {
 			return true;
-
+		}
 		if (obj != null && getClass().equals(obj.getClass()))
 		{
 			final snowflakeconnector.proxies.DatabaseProfile that = (snowflakeconnector.proxies.DatabaseProfile) obj;
@@ -354,7 +370,7 @@ public class DatabaseProfile
 	 */
 	public static java.lang.String getType()
 	{
-		return "SnowflakeConnector.DatabaseProfile";
+		return entityName;
 	}
 
 	/**

@@ -25,7 +25,7 @@ public class Warehouse
 		Size("Size"),
 		RefreshSuccesful("RefreshSuccesful");
 
-		private java.lang.String metaName;
+		private final java.lang.String metaName;
 
 		MemberNames(java.lang.String s)
 		{
@@ -41,15 +41,17 @@ public class Warehouse
 
 	public Warehouse(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		this(context, com.mendix.core.Core.instantiate(context, "SnowflakeConnector.Warehouse"));
+		this(context, com.mendix.core.Core.instantiate(context, entityName));
 	}
 
 	protected Warehouse(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject warehouseMendixObject)
 	{
-		if (warehouseMendixObject == null)
+		if (warehouseMendixObject == null) {
 			throw new java.lang.IllegalArgumentException("The given object cannot be null.");
-		if (!com.mendix.core.Core.isSubClassOf("SnowflakeConnector.Warehouse", warehouseMendixObject.getType()))
-			throw new java.lang.IllegalArgumentException("The given object is not a SnowflakeConnector.Warehouse");
+		}
+		if (!com.mendix.core.Core.isSubClassOf(entityName, warehouseMendixObject.getType())) {
+			throw new java.lang.IllegalArgumentException(String.format("The given object is not a %s", entityName));
+		}	
 
 		this.warehouseMendixObject = warehouseMendixObject;
 		this.context = context;
@@ -67,6 +69,9 @@ public class Warehouse
 	/**
 	 * Initialize a proxy using context (recommended). This context will be used for security checking when the get- and set-methods without context parameters are called.
 	 * The get- and set-methods with context parameter should be used when for instance sudo access is necessary (IContext.createSudoClone() can be used to obtain sudo access).
+	 * @param context The context to be used
+	 * @param mendixObject The Mendix object for the new instance
+	 * @return a new instance of this proxy class
 	 */
 	public static snowflakeconnector.proxies.Warehouse initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject mendixObject)
 	{
@@ -81,14 +86,16 @@ public class Warehouse
 
 	public static java.util.List<snowflakeconnector.proxies.Warehouse> load(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String xpathConstraint) throws com.mendix.core.CoreException
 	{
-		java.util.List<snowflakeconnector.proxies.Warehouse> result = new java.util.ArrayList<snowflakeconnector.proxies.Warehouse>();
-		for (com.mendix.systemwideinterfaces.core.IMendixObject obj : com.mendix.core.Core.retrieveXPathQuery(context, "//SnowflakeConnector.Warehouse" + xpathConstraint))
-			result.add(snowflakeconnector.proxies.Warehouse.initialize(context, obj));
-		return result;
+		return com.mendix.core.Core.createXPathQuery(String.format("//%1$s%2$s", entityName, xpathConstraint))
+			.execute(context)
+			.stream()
+			.map(obj -> snowflakeconnector.proxies.Warehouse.initialize(context, obj))
+			.collect(java.util.stream.Collectors.toList());
 	}
 
 	/**
 	 * Commit the changes made on this proxy object.
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final void commit() throws com.mendix.core.CoreException
 	{
@@ -97,6 +104,7 @@ public class Warehouse
 
 	/**
 	 * Commit the changes made on this proxy object using the specified context.
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final void commit(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
 	{
@@ -206,9 +214,9 @@ public class Warehouse
 	public final snowflakeconnector.proxies.Enum_WarehouseSize getSize(com.mendix.systemwideinterfaces.core.IContext context)
 	{
 		Object obj = getMendixObject().getValue(context, MemberNames.Size.toString());
-		if (obj == null)
+		if (obj == null) {
 			return null;
-
+		}
 		return snowflakeconnector.proxies.Enum_WarehouseSize.valueOf((java.lang.String) obj);
 	}
 
@@ -228,10 +236,11 @@ public class Warehouse
 	 */
 	public final void setSize(com.mendix.systemwideinterfaces.core.IContext context, snowflakeconnector.proxies.Enum_WarehouseSize size)
 	{
-		if (size != null)
+		if (size != null) {
 			getMendixObject().setValue(context, MemberNames.Size.toString(), size.toString());
-		else
+		} else {
 			getMendixObject().setValue(context, MemberNames.Size.toString(), null);
+		}
 	}
 
 	/**
@@ -289,9 +298,9 @@ public class Warehouse
 	@java.lang.Override
 	public boolean equals(Object obj)
 	{
-		if (obj == this)
+		if (obj == this) {
 			return true;
-
+		}
 		if (obj != null && getClass().equals(obj.getClass()))
 		{
 			final snowflakeconnector.proxies.Warehouse that = (snowflakeconnector.proxies.Warehouse) obj;
@@ -311,7 +320,7 @@ public class Warehouse
 	 */
 	public static java.lang.String getType()
 	{
-		return "SnowflakeConnector.Warehouse";
+		return entityName;
 	}
 
 	/**

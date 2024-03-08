@@ -17,7 +17,7 @@ This module extends current Database Connector module and creates a configuratio
 - Account name: {{organisation}}-{{account}}
 - User: {{username}} (uppercase)
 - Role: {{userrole}} (uppercase)
-- 
+  
 # Usage
 
 See example SF_TestResult_ExecuteQuery which is also used from the database test microflow (AT_DatabaseProfile_JdbcConnectionTest). This module uses the database connector activities and libraries as a base, so you need to create and specify the non peristent result object for your query and select it in the database activity within SF_TestResult_ExecuteQuery.

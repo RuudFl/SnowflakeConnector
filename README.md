@@ -11,8 +11,8 @@ This module extends current Database Connector module and creates a configuratio
 3) Connect 'Configuration' page to your app configuration.
 
 4) Create at least 1 configuration and 1 database profile for each created configuration. You can use multiple database profiles for a configuration to access multiple databases/schema's with different warehouses for the same snowflake enterprise account and role. Test your created database profiles by clicking 'Test Database connection' on the bottom grid of the configuration page.
-5) 
-6) To test a (trial) snowflake connection, use the following configuration: 
+
+5) To test a (trial) snowflake connection, use the following configuration: 
 
 - Account name: {{organisation}}-{{account}}
 - User: {{username}} (uppercase)

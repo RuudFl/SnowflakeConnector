@@ -32,7 +32,7 @@ In case of long running queries, you have the possibilty to use the snowflake sp
 
 # Dependencies
 
-[Database Connector 2.3.0](https://github.com/mendix/database-connector)
+[Database Connector 7.0.4](https://github.com/mendix/database-connector)
 
 [Encryption Module](https://appstore.home.mendix.com/link/app/1011/)
 
